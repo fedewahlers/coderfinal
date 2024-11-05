@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Libro</title>
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'buscar_libro' %}">Buscar Usuario</a></li>
+            <li><a href="{% url 'crear_autor' %}">Crear Usuario</a></li>
+            <li><a href="{% url 'crear_editorial' %}">Crear Perfil</a></li>
+            <li><a href="{% url 'crear_libro' %}">Crear Rol</a></li>
+            <li><a href="{% url 'about' %}">Acerca de mí</a></li>
+
+        </ul>
+    </nav>
+    <h1>Buscar Usuarios Almacenados</h1>
+    <form method="get">
+        <input type="text" name="q" placeholder="Buscar...">
+        <button type="submit">Buscar</button>
+    </form>
+    <ul>
+        {% for libro in libros %}
+            <li>{{ libro.titulo }} - {{ libro.autor }} - {{ libro.editorial }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

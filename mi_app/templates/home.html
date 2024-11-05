@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATABASE</title>
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+    <style>
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            margin: 15px 0;
+        }
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Base De Datos Piloto</h1>
+    </header>
+    <nav>
+        <div class="navbar">
+            {% if user.is_authenticated %}
+                <div class="profile-container">
+                    <img src="{{ user.profile_image.url }}" alt="Foto de perfil" class="profile-icon">
+                    <span>Bienvenido, {{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Cerrar Sesión</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <ul>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'buscar_libro' %}">Buscar Usuario</a></li>
+            <li><a href="{% url 'crear_autor' %}">Crear Usuario</a></li>
+            <li><a href="{% url 'crear_editorial' %}">Crear Perfil</a></li>
+            <li><a href="{% url 'crear_libro' %}">Crear Rol</a></li>
+            <li><a href="{% url 'about' %}">Acerca de mí</a></li>
+
+        </ul>
+    </nav>
+    
+    <main>
+        <h2>Crea Tu Usuario</h2>
+        <p>Primeros pasos para crear un usuario en Base de Datos</p>
+        
+        <div class="card-container">
+            <div class="card">
+                <h3>Buscar Usuario</h3>
+                <p>Encuentra un usuario existente en la base de datos.</p>
+                <a href="{% url 'buscar_libro' %}">Ir a Buscar</a>
+            </div>
+            <div class="card">
+                <h3>Crear Usuario</h3>
+                <p>Registra un nuevo usuario en la base de datos.</p>
+                <a href="{% url 'crear_autor' %}">Ir a Crear</a>
+            </div>
+            <div class="card">
+                <h3>Crear Perfil</h3>
+                <p>Crea un perfil para gestionar los roles de los usuarios.</p>
+                <a href="{% url 'crear_editorial' %}">Ir a Crear</a>
+            </div>
+        </div>
+
+   
+    </main>
+    <footer>
+        <p>&copy; 2024 Mi Aplicación Django. Todos los derechos reservados a Federico Wahlers.</p>
+    </footer>
+</body>
+</html>

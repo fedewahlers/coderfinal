@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Perfil</title>
+    <link rel="stylesheet" href="{% static 'mi_app/styles.css' %}">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'buscar_libro' %}">Buscar Usuario</a></li>
+            <li><a href="{% url 'crear_autor' %}">Crear Usuario</a></li>
+            <li><a href="{% url 'crear_editorial' %}">Crear Perfil</a></li>
+            <li><a href="{% url 'crear_libro' %}">Crear Rol</a></li>
+            <li><a href="{% url 'about' %}">Acerca de mí</a></li>
+
+        </ul>
+    </nav>
+    <h1>Crear Perfil</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
